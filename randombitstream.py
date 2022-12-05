@@ -8,6 +8,8 @@ def roundNumber(number):
   return math.ceil(number)
 
 def generateBitstream():
+  
+    # 3 loops just for convenience sake, code should be shortened by using more functions
     for i in range(5,125):
         if (i < 10): im = Image.open(r'C:\Users\bence\Pictures\Saved Pictures\FramebyFrame\ezgif-frame-00'+str(i)+'.jpg')
         elif (i < 100): im = Image.open(r'C:\Users\bence\Pictures\Saved Pictures\FramebyFrame\ezgif-frame-0'+str(i)+'.jpg')
@@ -41,6 +43,7 @@ def generateBitstream():
         
         Bitstream.append(allDigits)
 
+    # the follow loops are the exact same as the above; focus on the above
     for i in range(1,93):
         if (i < 10): im = Image.open(r'C:\Users\bence\Pictures\Saved Pictures\FramebyFrame2\ezgif-frame-00'+str(i)+'.jpg')
         elif (i < 100): im = Image.open(r'C:\Users\bence\Pictures\Saved Pictures\FramebyFrame2\ezgif-frame-0'+str(i)+'.jpg')
