@@ -2,13 +2,13 @@ from PIL import Image
 import math
 Bitstream = []
 
+# unused function
 def roundNumber(number):
   decimal = number - math.floor(number)
   if decimal < 0.5: return math.floor(number)
   return math.ceil(number)
 
 def generateBitstream():
-  
     for i in range(5,125):
         if (i < 10): im = Image.open(r'C:\Users\bence\Pictures\Saved Pictures\FramebyFrame\ezgif-frame-00'+str(i)+'.jpg')
         elif (i < 100): im = Image.open(r'C:\Users\bence\Pictures\Saved Pictures\FramebyFrame\ezgif-frame-0'+str(i)+'.jpg')
