@@ -2,7 +2,7 @@ import hashlib
 import numpy
 from PIL import Image
 
-# Open the image and convert it to grayscale
+# Open the image
 im = Image.open('C:\\Users\\bence\\Pictures\\Saved Pictures\\acrylicpendulum\\IMG_1042\\001.jpg')
 
 # im.show()
