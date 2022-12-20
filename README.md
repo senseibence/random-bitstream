@@ -1,4 +1,4 @@
-# Double Pendulum to Random Bitstream
+# Double Pendulum --> Random Bitstream
 This program uses the Python Imaging Library to open images of my double pendulum model to generate a random bitstream based on the average pixel values. I am working to both create a better pendulum model and test the random bits as per the National Institute of Standards and Technology's guidelines
 
 [NIST Statistical Test Suite PDF](https://nvlpubs.nist.gov/nistpubs/legacy/sp/nistspecialpublication800-22r1a.pdf)
