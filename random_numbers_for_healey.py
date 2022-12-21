@@ -6,64 +6,81 @@ import statistics
 import random
 
 Random_Numbers = ''
+Random_Bits = ''
 
-def generateRandom(list):
-  for i in range(2): 
-    for j in range(1, list[i]):
-      print(j)
+def generateRandom():
+  global Random_Numbers
+  global Random_Bits
 
-      # Open images of pendulum
-      if (j < 10): image = Image.open(r'C:\\Users\\bence\\Pictures\\Saved Pictures\\acrylicpendulum\\pictures1\\00'+str(j)+'.jpg')
-      elif (j < 100): image = Image.open(r'C:\\Users\\bence\\Pictures\\Saved Pictures\\acrylicpendulum\\pictures1\\0'+str(j)+'.jpg')
-      else: image = Image.open(r'C:\\Users\\bence\\Pictures\\Saved Pictures\\acrylicpendulum\\pictures1\\'+str(j)+'.jpg')
+  # file path syntax makes a hard time for variable insertion, thus two separate code blocks and not a function is used
+  for i in range(2, 4981):
 
-      # Get all pixel values
-      pixel_array = numpy.array(image)
-      pixel_array = pixel_array.flatten()
+    # Open images of pendulum
+    if (i < 10): image = Image.open(r'C:\\Users\\bence\\Pictures\\Saved Pictures\\acrylicpendulum\\pictures1\\00'+str(i)+'.jpg')
+    elif (i < 100): image = Image.open(r'C:\\Users\\bence\\Pictures\\Saved Pictures\\acrylicpendulum\\pictures1\\0'+str(i)+'.jpg')
+    else: image = Image.open(r'C:\\Users\\bence\\Pictures\\Saved Pictures\\acrylicpendulum\\pictures1\\'+str(i)+'.jpg')
 
-      # Hash with SHA-256
-      hash_value = hashlib.sha256(pixel_array).hexdigest()
+    # Get pixel data
+    pixel_array = numpy.array(image.getdata())
+    pixel_array = pixel_array.flatten()
 
-      # Create both random numbers and bits
-      random_number = int(hash_value, 16)
+    # Hash with SHA-256
+    hash_value = hashlib.sha256(pixel_array).hexdigest()
 
-      global Random_Numbers
-      Random_Numbers += str(random_number)
+    # Create both random numbers and bits
+    random_number = int(hash_value, 16)
+    random_bitstream = bin(random_number)[2:]
 
-# generateRandom([4981, 3801])
+    Random_Numbers += str(random_number)
+    Random_Bits += str(random_bitstream)
+  
+  for i in range(14, 3801):
+    if (i < 10): image = Image.open(r'C:\\Users\\bence\\Pictures\\Saved Pictures\\acrylicpendulum\\pictures2\\00'+str(i)+'.jpg')
+    elif (i < 100): image = Image.open(r'C:\\Users\\bence\\Pictures\\Saved Pictures\\acrylicpendulum\\pictures2\\0'+str(i)+'.jpg')
+    else: image = Image.open(r'C:\\Users\\bence\\Pictures\\Saved Pictures\\acrylicpendulum\\pictures2\\'+str(i)+'.jpg')
+    pixel_array = numpy.array(image.getdata())
+    pixel_array = pixel_array.flatten()
+    hash_value = hashlib.sha256(pixel_array).hexdigest()
+    random_number = int(hash_value, 16)
+    random_bitstream = bin(random_number)[2:]
+    Random_Numbers += str(random_number)
+    Random_Bits += str(random_bitstream)
 
-# writing numbers to file
-'''
+generateRandom()
+
+# writing numbers to files
 random_numbers_txt = open('C:\\Users\\bence\\Documents\\Random Numbers.txt', 'w')
+random_bits_txt = open('C:\\Users\\bence\\Documents\\Random Bits.txt', 'w')
 random_numbers_txt.writelines(Random_Numbers)
-'''
+random_bits_txt.writelines(Random_Bits)
 
+'''
 # reading numbers from file
 random_numbers_txt = open('C:\\Users\\bence\\Documents\\Random Numbers.txt', 'r')
 string = random_numbers_txt.read()
 convert_to_list = list(string)
+'''
 
 # single image that was not parsed earlier will be used as the shuffling seed
-image = Image.open(r'C:\\Users\\bence\\Pictures\\Saved Pictures\\acrylicpendulum\\pictures1\\4980.jpg')
+image = Image.open(r'C:\\Users\\bence\\Pictures\\Saved Pictures\\acrylicpendulum\\pictures1\\001.jpg')
 
-pixel_array = numpy.array(image)
+pixel_array = numpy.array(image.getdata())
 pixel_array = pixel_array.flatten()
-
-# any one of the three below could be used as a seed
 hash_value = hashlib.sha256(pixel_array).hexdigest()
 random_number = int(hash_value, 16)
 random_bitstream = bin(random_number)[2:]
 
 # shuffle 
+Random_Numbers = list(Random_Numbers)
 random.seed(random_bitstream)
-random.shuffle(convert_to_list) 
+random.shuffle(Random_Numbers) 
 
-# everything below is statistics for the chosen range of [106221:107221]
-
+# statistics
 frequencies = numpy.array([0,0,0,0,0,0,0,0,0,0])
-for digit in convert_to_list[106221:107221]:
+for digit in Random_Numbers:
   frequencies[int(digit)] += 1
 
+'''
 x_axis = (0,1,2,3,4,5,6,7,8,9)
 y_axis = frequencies
 
@@ -79,6 +96,7 @@ plt.title('frequency vs. digits')
 plt.xlabel('digits')
 plt.ylabel('frequency')
 plt.show()
+'''
 
 def sort(list):
   for i in range(len(list)):
@@ -91,22 +109,22 @@ def sort(list):
   return list
 
 print(frequencies)
-sorted_counter_array = sort(frequencies)
-print(sorted_counter_array)
+sorted_frequencies = sort(frequencies)
+print(sorted_frequencies)
 print()
 
-median = statistics.median(sorted_counter_array)
-Q1 = numpy.percentile(sorted_counter_array, 25)
-Q3 = numpy.percentile(sorted_counter_array, 75)
+median = statistics.median(sorted_frequencies)
+Q1 = numpy.percentile(sorted_frequencies, 25)
+Q3 = numpy.percentile(sorted_frequencies, 75)
 
-print("Min: "+str(sorted_counter_array[0]))
+print("Min: "+str(sorted_frequencies[0]))
 print("Q1: "+str(Q1))
 print("Median: "+str(median))
 print("Q3: "+str(Q3))
-print("Max: "+str(sorted_counter_array[-1]))
+print("Max: "+str(sorted_frequencies[-1]))
 print()
 
-range = sorted_counter_array[-1]-sorted_counter_array[0]
+range = (sorted_frequencies[-1])-(sorted_frequencies[0])
 print("Range: "+str(range))
 IQR = Q3-Q1
 print("IQR: "+str(IQR))
@@ -119,12 +137,8 @@ print("Lowest Allowed: "+str(lowest_allowed))
 print("Highest Allowed: "+str(highest_allowed))
 print()
 
-for frequency in sorted_counter_array:
+for frequency in sorted_frequencies:
   if (frequency < lowest_allowed): print("Too low: "+str(frequency))
   if (frequency > highest_allowed): print("Too high: "+str(frequency))
-    
-# write result list to file
-'''
-fordeanhealey = open('C:\\Users\\bence\\Documents\\fordeanhealey.txt', 'w')
-fordeanhealey.writelines(convert_to_list[106221:107221])
-'''
+
+# Write to Healey txt
