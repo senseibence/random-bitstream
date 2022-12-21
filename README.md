@@ -7,10 +7,10 @@ This program uses the Python Imaging Library to open images of my double pendulu
 
 [Video of my model](https://youtu.be/y2C1Hvt44IE)
 
+![image](https://cdn.discordapp.com/attachments/953870034227302470/1051378863168557076/IMG_1031.jpg)
+
 ![image](https://cdn.discordapp.com/attachments/953870034227302470/1048800347843461151/IMG_0961.png)
 
 ![image](https://cdn.discordapp.com/attachments/953870034227302470/1048883550100934686/IMG_1007.jpg)
 
 ![image](https://cdn.discordapp.com/attachments/953870034227302470/1048883551711526932/IMG_1006.jpg)
-
-![image](https://cdn.discordapp.com/attachments/953870034227302470/1051378863168557076/IMG_1031.jpg)
