@@ -63,8 +63,8 @@ def findMinimum(list):
 
 # statistics
 def statisticalTest():
+  
   # misleading histograms
-
   x_axis = (0,1,2,3,4,5,6,7,8,9)
   y_axis = frequencies
 
