@@ -63,6 +63,24 @@ def findMinimum(list):
 
 # statistics
 def statisticalTest():
+  # misleading histograms
+
+  x_axis = (0,1,2,3,4,5,6,7,8,9)
+  y_axis = frequencies
+
+  plt.bar(x_axis, y_axis)
+  plt.title('frequency vs. digits') 
+  plt.xlabel('digits')
+  plt.ylabel('frequency')
+  plt.show()
+
+  plt.bar(x_axis, y_axis)
+  plt.yscale('log')
+  plt.title('frequency vs. digits') 
+  plt.xlabel('digits')
+  plt.ylabel('frequency')
+  plt.show()
+
   print(frequencies)
   sorted_frequencies = sort(frequencies)
   print(sorted_frequencies)
@@ -172,25 +190,6 @@ random.seed(random_number)
 random.shuffle(all_random_numbers)
 random.seed(random_bitstream)
 random.shuffle(all_random_numbers)
-
-# misleading histograms
-'''
-x_axis = (0,1,2,3,4,5,6,7,8,9)
-y_axis = frequencies
-
-plt.bar(x_axis, y_axis)
-plt.title('frequency vs. digits') 
-plt.xlabel('digits')
-plt.ylabel('frequency')
-plt.show()
-
-plt.bar(x_axis, y_axis)
-plt.yscale('log')
-plt.title('frequency vs. digits') 
-plt.xlabel('digits')
-plt.ylabel('frequency')
-plt.show()
-'''
 
 # writing final random numbers to file
 result = ''.join(str(num) for num in all_random_numbers)
