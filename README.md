@@ -13,4 +13,10 @@ This program uses the Python Imaging Library to open images of my double pendulu
 
 ![image](newdoublependulum.jpg)
 
+New Model
+
+<br/>
+
 ![image](olddoublependulum.jpg)
+
+Old Model
