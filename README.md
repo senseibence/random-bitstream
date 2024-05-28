@@ -7,9 +7,9 @@ This program uses the Python Imaging Library to open images of my double pendulu
 
 [Random Bitstream Test Website](https://mzsoltmolnar.github.io/random-bitstream-tester/)
 
-[Video of my model (new version)](https://youtu.be/JNjFEMoiKHg)
+[Video of model (new version)](https://youtu.be/JNjFEMoiKHg)
 
-[Video of my model (old version)](https://youtu.be/y2C1Hvt44IE)
+[Video of model (old version)](https://youtu.be/y2C1Hvt44IE)
 
 ![image](newdoublependulum.jpg)
 
